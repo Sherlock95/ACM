@@ -4,37 +4,37 @@
 
 function test( len ) 
 {
-    function s( n, k )   
+    var memo_a = [ 0, 1 ];
+    var memo_ak = [];
+    for ( var i = 0; i < len; ++i )
     {
-        var end = Math.floor( n / k );
-        var sum = 0;
-
-        for ( var j = 1; j <= end; ++j )
+        for ( var j = 0; j < len; ++j )
         {
-            sum += a( n + 1 - j * k );
+            memo_ak[ ( i * len ) + j ] = 0;
         }
-
-        return sum;
     }
 
     function a( n )
     {
-        if ( n === 0 )
+        if ( memo_a.hasOwnProperty( n ) )
         {
-            return 0;
-        }
-        if ( n === 1 )
-        {
-            return 1;
+            return memo_a[ n ];
         }
 
         var sum = 0;
         for ( var k = 1; k <= n - 1; ++k )
         {
-            sum += k * a( k ) * s( n - 1, k );
+            var A = memo_a[ n - k ];
+            var B = memo_a[ k ];
+            var C = memo_ak[ ( ( n - k ) * len ) + k ];
+            var d = ( A * B ) + C;
+            memo_ak[ ( n * len ) + k ] = d;
+            sum += k * d;
         }
 
-        return sum / ( n - 1 );
+        var result =  sum / ( n - 1 );
+        memo_a[ n ] = result;
+        return result;
     }
 
     var result = [];

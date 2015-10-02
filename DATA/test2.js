@@ -19,6 +19,7 @@ function test( len )
 
     function a( n )
     {
+        process.stdout.write( n + '' );
         if ( n === 0 )
         {
             return 0;
@@ -41,6 +42,7 @@ function test( len )
     for ( var i = 0; i < len; ++i )
     {
         result[ i ] = a( i );
+        process.stdout.write( '\n' );
     }
 
     return result;

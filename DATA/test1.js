@@ -19,6 +19,7 @@ function test( len )
 
     function a( n )
     {
+        process.stdout.write( n + '' );
         if ( n === 0 )
         {
             return 0;

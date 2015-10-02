@@ -4,6 +4,17 @@
 
 function test( len ) 
 {
+    var memo_s = [];
+    for ( var i = 0; i < len; ++i )
+    {
+        memo_s[ i ] = [];
+        for ( var j = 0; j < len; ++j )
+        {
+            memo_s[ i ][ j ] = 0;
+        }
+    }
+
+
     function s( n, k )   
     {
         var end = Math.floor( n / k );
@@ -14,33 +25,47 @@ function test( len )
             sum += a( n + 1 - j * k );
         }
 
+        memo_s[ n ][ k ] = sum;
+
         return sum;
     }
 
+    var memo_a = [ 0, 1 ];
     function a( n )
     {
-        if ( n === 0 )
+        if ( memo_a.hasOwnProperty( n ) )
         {
-            return 0;
-        }
-        if ( n === 1 )
-        {
-            return 1;
+            return memo_a[ n ];
         }
 
         var sum = 0;
         for ( var k = 1; k <= n - 1; ++k )
         {
-            sum += k * a( k ) * s( n - 1, k );
+            var A = k;
+            var B = a( k );
+            var C = s( n - 1, k );
+            console.log( n + ", " + k + ' ' + A + ' ' + B + ' ' + C );
+            sum += A * B * C;
         }
 
-        return sum / ( n - 1 );
+        var result =  sum / ( n - 1 );
+        memo_a[ n ] = result;
+        return result;
     }
 
     var result = [];
     for ( var i = 0; i < len; ++i )
     {
         result[ i ] = a( i );
+    }
+
+    for ( var i = 0; i < len; ++i )
+    {
+        for ( var j = 0; j < len; ++j )
+        {
+            process.stdout.write( memo_s[ i ][ j ] + ' ' );
+        }
+        process.stdout.write( '\n' );
     }
 
     return result;

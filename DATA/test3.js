@@ -17,15 +17,12 @@ function test( len )
         return sum;
     }
 
+    var memo_a = [ 0, 1 ];
     function a( n )
     {
-        if ( n === 0 )
+        if ( memo_a.hasOwnProperty( n ) )
         {
-            return 0;
-        }
-        if ( n === 1 )
-        {
-            return 1;
+            return memo_a[ n ];
         }
 
         var sum = 0;
@@ -34,7 +31,9 @@ function test( len )
             sum += k * a( k ) * s( n - 1, k );
         }
 
-        return sum / ( n - 1 );
+        var result =  sum / ( n - 1 );
+        memo_a[ n ] = result;
+        return result;
     }
 
     var result = [];
@@ -55,3 +54,4 @@ console.log( result );
 var time_sec = end[ 0 ];
 var time_ms = end[ 1 ] / 1000000;
 console.log( time_sec + " s, " + time_ms.toFixed( 3 ) + " ms" );
+

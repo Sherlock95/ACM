@@ -17,24 +17,27 @@ function test( len )
         return sum;
     }
 
+    var memo_a = [ 0, 1 ];
     function a( n )
     {
-        if ( n === 0 )
+        if ( memo_a.hasOwnProperty( n ) )
         {
-            return 0;
-        }
-        if ( n === 1 )
-        {
-            return 1;
+            return memo_a[ n ];
         }
 
         var sum = 0;
         for ( var k = 1; k <= n - 1; ++k )
         {
-            sum += k * a( k ) * s( n - 1, k );
+            var A = k;
+            var B = a( k );
+            var C = s( n - 1, k );
+            console.log( n + ", " + k + ' ' + A + ' ' + B + ' ' + C );
+            sum += A * B * C;
         }
 
-        return sum / ( n - 1 );
+        var result =  sum / ( n - 1 );
+        memo_a[ n ] = result;
+        return result;
     }
 
     var result = [];
