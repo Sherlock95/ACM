@@ -4,6 +4,7 @@
 
 function test( len ) 
 {
+    // CHANGE
     var memo_s = [];
     for ( var i = 0; i < len; ++i )
     {

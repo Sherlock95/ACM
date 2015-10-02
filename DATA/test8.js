@@ -36,7 +36,7 @@ function test( len )
             var A = k;
             var B = a( k );
             var C = s( n - 1, k );
-            var d = B * C;
+            var d = B * C; // CHANGE
             process.stdout.write( d + ' ' );
             sum += d * A;
         }

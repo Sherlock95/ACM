@@ -15,7 +15,7 @@ function test( len )
         }
     }
 
-
+    // CHANGE
     function s( n, k )   
     {
         var sum = memo_s[ n - k ][ k ] + memo_a[ n + 1 - 1 * k ];

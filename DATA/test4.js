@@ -28,6 +28,7 @@ function test( len )
         var sum = 0;
         for ( var k = 1; k <= n - 1; ++k )
         {
+            // CHANGE
             var A = k;
             var B = a( k );
             var C = s( n - 1, k );

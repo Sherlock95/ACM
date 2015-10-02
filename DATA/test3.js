@@ -17,7 +17,7 @@ function test( len )
         return sum;
     }
 
-    var memo_a = [ 0, 1 ];
+    var memo_a = [ 0, 1 ]; // CHANGE
     function a( n )
     {
         if ( memo_a.hasOwnProperty( n ) )

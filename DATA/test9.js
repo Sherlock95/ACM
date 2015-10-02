@@ -14,6 +14,8 @@ function test( len )
         }
     }
 
+    // CHANGE
+
     function a( n )
     {
         if ( memo_a.hasOwnProperty( n ) )
